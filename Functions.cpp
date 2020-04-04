@@ -108,11 +108,6 @@ void printChoice(){
     cout << "17.Memeory delet" << endl;
     cout << "18.Print choice" << endl;
     cout << "19.End" << endl;
-    cout << "19.End" << endl;
-    cout << "19.End" << endl;
-    cout << "19.End" << endl;
-    cout << "19.End" << endl;
-    cout << "19.End" << endl;
 };
 //Заполнение массива
 void fillingNodes(pNode head) {
