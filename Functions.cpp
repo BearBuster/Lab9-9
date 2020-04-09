@@ -114,20 +114,10 @@ void fillingNodes(pNode head) {
     pNode tmp = head, tmpCheck;
     i = 0;
     while (tmp != nullptr) {
-            cout << "Enter node's id : ";
-            cin >> i;
-            tmpCheck = head;
-            while (tmpCheck->next != nullptr) {
-                if (i == tmpCheck->id) {
-                    cout << "Id already exist , try again " << endl;
-                    break;
-                }
-                tmpCheck = tmpCheck->next;
-            }
-        if (tmpCheck->id != i) {
-            tmp->id = i;
-            tmp = tmp->next;
-        }
+        cout << "Enter node's id : ";
+        cin >> i;
+        tmp->id = i;
+        tmp = tmp->next;
     }
     cout << "List was filled " << endl;
 }
@@ -142,21 +132,21 @@ pNode searchNode(pNode head ){
             return tmp;
         tmp = tmp->next;
     }
+    cout << "Node with that id not exist" << endl;
     return 0;
 };
-//Изменение узла ( Но тут можно изменить его уже на существующий id , чего я избежал в заполнение массива )
+//Изменение узла
 void changeNode( pNode tmp ){
     cout << "Enter new id for node < TMP > : ";
     cin >> tmp->id;
 };
 //Рокировка
 void exchange(pNode &head , pNode tmp){
-    pNode tmp_2 = 0;
-    while(tmp_2 == 0){
-        cout << "With wich node do you want exchange " << endl;
-        tmp_2 = searchNode(head);
-    }
-    swap(tmp->id , tmp_2->id);
+    pNode tmp_2;
+    cout << "With wich node do you want exchange " << endl;
+    tmp_2 = searchNode(head);
+    if(tmp_2)
+        swap(tmp->id , tmp_2->id);
 };
 //Сортировка
 void sort(pNode head){
@@ -247,17 +237,19 @@ void readFromFile( pNode &head){
             cout << "Do you want unite your list with list from file ? (1)Yes  (2)No : ";
             cin >> choice;
             if (choice == 1) {
-                while(!fl.eof()) {
-                    fl >> i;
+                while(fl >> i) {
                     addLast(head, createNewNode(i));
                 }
-            }else
+            }else {
+                freeMemory(head);
+                while(fl >> i) {
+                    addLast(head, createNewNode(i));
+                }
                 return;
-        }else{
-            while(!fl.eof()) {
-                fl >> i;
-                addLast(head, createNewNode(i));
             }
+        }else{
+            while(fl >> i)
+                addLast(head, createNewNode(i));
         }
     }else
         cout << "Error with opening file" << endl;
@@ -265,12 +257,12 @@ void readFromFile( pNode &head){
 };
 //Ввод в файл
 void writeToFile( pNode head){
-    fstream fl;
+    ofstream fl;
     fl.open("/Users/guardi/CLionProjects/Lab_8-9/input-output.txt");
     if(fl.is_open()) {
         pNode tmp = head;
         while(tmp != nullptr){
-            fl << tmp->id << endl;
+            fl << tmp->id << ' ';
             tmp = tmp->next;
         }
     }else
@@ -309,6 +301,5 @@ void freeMemory(pNode &head){
             delete tmpBefore;
             tmp = tmp->next;
         }
-        cout << "memory freed" << endl;
     }
 };

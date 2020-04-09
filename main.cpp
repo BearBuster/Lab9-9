@@ -30,9 +30,7 @@ int main() {
                 break;
             case 4:
                 tmp = searchNode(head);
-                if(tmp == 0 )
-                    cout << "Node not exist" << endl;
-                else
+                if( tmp )
                     cout << " Node tmp right now : id = "<< tmp->id << endl;
                 break;
             case 5:
@@ -55,13 +53,21 @@ int main() {
                 swap(tmp , tmp_1);
                 break;
             case 9:
-                if(tmp)
-                    separationOfList( head ,  head_1 , tmp);
+                if(tmp) {
+                    separationOfList(head, head_1, tmp);
+                    tmp = nullptr;
+                    tmp_1 = nullptr;
+                }
                 else
                     cout << "At first find first node" << endl;
                 break;
             case 10:
-                connectLists( head , head_1);
+                if (head && head_1) {
+                    connectLists(head, head_1);
+                    tmp = nullptr;
+                    tmp_1 = nullptr;
+                } else
+                    cout << "No exist some list" << endl;
                 break;
             case 11:
                 if(tmp)
@@ -70,8 +76,10 @@ int main() {
                     cout << "At first find node" << endl;
                 break;
             case 12:
-                if(tmp)
-                    deleteOldNode(head , tmp);
+                if(tmp) {
+                    deleteOldNode(head, tmp);
+                    tmp = nullptr;
+                }
                 else
                     cout << "At first find node" << endl;
                 break;
@@ -85,10 +93,11 @@ int main() {
                 cout << "Your last host address : " << lastAdress(head) << endl;
                 break;
             case 16:
-                cout << countNodes(head) << endl;
+                cout << "Right now at list : " << countNodes(head)  << " elements"<< endl;
                 break;
             case 17:
                 freeMemory(head);
+                cout << "memory freed" << endl;
                 break;
             case 18:
                 printChoice();
