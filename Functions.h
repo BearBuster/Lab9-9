@@ -31,7 +31,7 @@ void sort( pNode );
 void sortAscending( pNode );
 void sortDescending( pNode );
 //Разделение Списка
-void separationOfList(pNode , pNode& , pNode);
+void separationOfList(pNode &head_1, pNode tmp);
 //Слияние Списков
 void connectLists( pNode , pNode& );
 //Удаление Узла

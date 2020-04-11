@@ -11,7 +11,7 @@ pNode createNewNode(int id){
     newNode->id = id;
     newNode->next = nullptr;
     return newNode;
-};
+}
 void allocMemoryForNodes(pNode& head) {
     if (head != nullptr) {
         cout << " Memory already alloced " << endl;
@@ -24,7 +24,7 @@ void allocMemoryForNodes(pNode& head) {
         }
         cout << "Memory was alloced for " << n << " elements" << endl;
     }
-};
+}
 //Вставка узла
 void insertNode(pNode &head , pNode tmp){
     cout << "1.Add first" << endl;
@@ -51,11 +51,11 @@ void insertNode(pNode &head , pNode tmp){
         default:
             break;
     }
-};
+}
 void addFirst( pNode &head , pNode newNode){
     newNode->next = head;
     head = newNode;
-};
+}
 void addBefore(pNode &head ,pNode p , pNode newNode){
     pNode tmp = head;
     if(p==head){
@@ -65,11 +65,11 @@ void addBefore(pNode &head ,pNode p , pNode newNode){
             tmp = tmp->next;
         addAfter(tmp, newNode);
     }
-};
+}
 void addAfter( pNode p , pNode newNode){
     newNode->next = p->next;
     p->next = newNode;
-};
+}
 void addLast(pNode &head , pNode newNode){
     pNode tmp = head;
     if  (head == nullptr){
@@ -79,7 +79,7 @@ void addLast(pNode &head , pNode newNode){
     while(tmp->next != nullptr)
         tmp = tmp->next;
     tmp->next = newNode;
-};
+}
 //Выводы
 void printList(pNode head){
     pNode tmp = head;
@@ -87,7 +87,7 @@ void printList(pNode head){
         cout << "id : " << tmp->id << endl;
         tmp = tmp->next;
     }
-};
+}
 void printChoice(){
     cout << "1.Alloc memory" << endl;
     cout << "2.Enter info from keyboard" << endl;
@@ -108,10 +108,10 @@ void printChoice(){
     cout << "17.Memeory delet" << endl;
     cout << "18.Print choice" << endl;
     cout << "19.End" << endl;
-};
+}
 //Заполнение массива
 void fillingNodes(pNode head) {
-    pNode tmp = head, tmpCheck;
+    pNode tmp = head;
     i = 0;
     while (tmp != nullptr) {
         cout << "Enter node's id : ";
@@ -133,13 +133,13 @@ pNode searchNode(pNode head ){
         tmp = tmp->next;
     }
     cout << "Node with that id not exist" << endl;
-    return 0;
-};
+    return nullptr;
+}
 //Изменение узла
 void changeNode( pNode tmp ){
     cout << "Enter new id for node < TMP > : ";
     cin >> tmp->id;
-};
+}
 //Рокировка
 void exchange(pNode &head , pNode tmp){
     pNode tmp_2;
@@ -147,7 +147,7 @@ void exchange(pNode &head , pNode tmp){
     tmp_2 = searchNode(head);
     if(tmp_2)
         swap(tmp->id , tmp_2->id);
-};
+}
 //Сортировка
 void sort(pNode head){
     cout << "At first say sort will be (1)ascending or (2)descending : ";
@@ -162,7 +162,7 @@ void sort(pNode head){
         default:
             break;
     }
-};
+}
 void sortAscending(pNode head){
     pNode tmp_1 = head , tmp_2;
     while(tmp_1 != nullptr){
@@ -188,7 +188,7 @@ void sortDescending(pNode head){
     }
 }
 //Разделение Списка
-void separationOfList(pNode head , pNode &head_1 , pNode tmp){
+void separationOfList(pNode &head_1, pNode tmp) {
     pNode tmp_1 = tmp->next;
     tmp->next = nullptr;
     if(head_1 != nullptr){
@@ -198,13 +198,13 @@ void separationOfList(pNode head , pNode &head_1 , pNode tmp){
             pNode tmp_2 = head_1;
             while(tmp_2->next != nullptr){
                 tmp_2 = tmp_2->next;
-            };
+            }
             tmp_2->next = tmp_1;
         } else
             head_1 = tmp_1;
     }else
         head_1 = tmp_1;
-};
+}
 //Слияние Списков
 void connectLists( pNode head , pNode &head_1){
     pNode tmp = head;
@@ -212,7 +212,7 @@ void connectLists( pNode head , pNode &head_1){
         tmp = tmp->next;
     tmp->next = head_1;
     head_1 = nullptr;
-};
+}
 //Удаление Узла
 void deleteOldNode(pNode &head , pNode oldNode){
     pNode tmp = head;
@@ -227,7 +227,7 @@ void deleteOldNode(pNode &head , pNode oldNode){
     }
     delete oldNode;
     cout << "Note was deleted" << endl;
-};
+}
 //Чтение из файла
 void readFromFile( pNode &head){
     fstream fl;
@@ -254,7 +254,7 @@ void readFromFile( pNode &head){
     }else
         cout << "Error with opening file" << endl;
     fl.close();
-};
+}
 //Ввод в файл
 void writeToFile( pNode head){
     ofstream fl;
@@ -268,13 +268,13 @@ void writeToFile( pNode head){
     }else
         cout << "Error with opening file" << endl;
     fl.close();
-};
+}
 //Адрес последнего
 pNode lastAdress( pNode head ){
     while( head && head->next )
         head = head->next;
     return head;
-};
+}
 //Количество узлов
 int countNodes(pNode head){
     pNode tmp = head;
@@ -288,18 +288,17 @@ int countNodes(pNode head){
         }
         return count;
     }
-};
+}
 //Освобождение памяти
 void freeMemory(pNode &head){
     if(!head)
         cout << "List already empty" << endl;
     else{
-        pNode tmp = head , tmpBefore;
-        head = nullptr;
-        while(tmp->next){
-            tmpBefore = tmp;
+        pNode tmpBefore;
+        while(head){
+            tmpBefore = head;
+            head = head->next;
             delete tmpBefore;
-            tmp = tmp->next;
         }
     }
-};
+}

@@ -54,7 +54,7 @@ int main() {
                 break;
             case 9:
                 if(tmp) {
-                    separationOfList(head, head_1, tmp);
+                    separationOfList(head_1, tmp);
                     tmp = nullptr;
                     tmp_1 = nullptr;
                 }
