@@ -1,6 +1,5 @@
 #ifndef LAB_8_9_FUNCTIONS_H
 #define LAB_8_9_FUNCTIONS_H
-
 struct node {
     int id = 0;
     node *next;

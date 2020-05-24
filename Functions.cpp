@@ -200,8 +200,10 @@ void separationOfList(pNode &head_1, pNode tmp) {
                 tmp_2 = tmp_2->next;
             }
             tmp_2->next = tmp_1;
-        } else
+        } else {
+            freeMemory(head_1);
             head_1 = tmp_1;
+        }
     }else
         head_1 = tmp_1;
 }

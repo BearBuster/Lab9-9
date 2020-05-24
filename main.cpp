@@ -97,7 +97,10 @@ int main() {
                 break;
             case 17:
                 freeMemory(head);
-                cout << "memory freed" << endl;
+                (head != nullptr)? cout << "curent list full": cout << "curent list Empty";
+                cout << endl;
+                (head_1 != nullptr)? cout << "another list full": cout << "another list Empty";
+                cout << endl;
                 break;
             case 18:
                 printChoice();
